@@ -1,0 +1,82 @@
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import Nav from "./Nav";
+
+import ShopContext from "../store/shop-context";
+
+import { ShoppingCartSimpleIcon } from "@phosphor-icons/react";
+
+import logo from "../assets/Logo.png";
+import CartModal from "./CartModal";
+
+function Header() {
+  const [openCart, setOpenCart] = useState(false);
+
+  const { cartData } = useContext(ShopContext);
+  const { items } = cartData || {};
+
+  const cartQuantity = (items || []).reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
+  let modalActions = (
+    <button
+      className="bg-secondary px-2 py-0.5 rounded-md hover:opacity-70 cursor-pointer transition-colors "
+      onClick={() => setOpenCart(false)}
+    >
+      Go back to shopping
+    </button>
+  );
+
+  if (cartQuantity > 0) {
+    modalActions = (
+      <>
+        <Link
+          to="/checkout"
+          className="bg-primary px-2 py-0.5 rounded-md hover:opacity-70 cursor-pointer transition-colors text-white"
+          onClick={() => setOpenCart(false)}
+        >
+          Checkout
+        </Link>
+      </>
+    );
+  }
+
+  /* 
+  const mainRoute = siteRoutes.find((r) => r.path === '/')
+  const childRoutes = mainRoute?.children ?? []
+  const topRoutes = siteRoutes.filter((r) => r.showInNav && r.path !== '/')
+  const navItems = [...childRoutes.filter((r) => r.showInNav), ...topRoutes]
+  */
+
+  return (
+    <header className="flex items-center justify-between container">
+      <img src={logo} />
+      <Nav className="ml-auto px-5" />
+      <button
+        className="text-white bg-primary px-3 py-1 rounded-md relative"
+        onClick={() => setOpenCart(true)}
+      >
+        <span className="flex itesm-center gap-2 ">
+          Cart <ShoppingCartSimpleIcon className="text-secondary" size={24} />
+        </span>
+        {cartQuantity > 0 && (
+          <span className="inline-block rounded-full absolute bg-accent text-primary w-[20px] h-[20px] leading-[20px] text-center top-0 right-0 -translate-y-1/4">
+            {cartQuantity}
+          </span>
+        )}
+      </button>
+
+      {openCart && (
+        <CartModal
+          title="Your shopping cart"
+          actions={modalActions}
+          onClose={() => setOpenCart(false)}
+        />
+      )}
+    </header>
+  );
+}
+
+export default Header;
