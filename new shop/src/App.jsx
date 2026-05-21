@@ -1,13 +1,24 @@
 import { useState } from "react";
 import "./App.css";
+import dummyProducts from "./data/dummyData";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ProductCard from "./components/ProductCard";
 
 function App() {
   return (
     <>
       <Header />
-      <main>Prodotti in arrivo</main>
+      {dummyProducts.map((product, index) => (
+        <ProductCard
+          key={index}
+          name={product.name}
+          price={product.price}
+          category={product.category}
+          image={product.image}
+        />
+      ))}
       <Footer />
     </>
   );
