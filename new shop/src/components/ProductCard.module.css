@@ -1,0 +1,30 @@
+.card {
+  gap: 0.5rem;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1rem;
+  transition: transform var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+
+.category {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+}
+
+.price {
+  font-weight: 600;
+}
