@@ -1,5 +1,5 @@
 .navbar {
-  padding: 1rem;
+  padding-block: 1rem;
   background-color: var(--color-text);
   color: var(--color-bg);
 }
@@ -7,7 +7,6 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   font-weight: bold;
   color: var(--color-accent);
 }
