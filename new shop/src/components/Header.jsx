@@ -2,7 +2,7 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
-export default function Header() {
+export default function Header({ cartCount }) {
   return (
     <header className={`${styles.navbar}`}>
       <div className={"container row"}>
@@ -24,7 +24,7 @@ export default function Header() {
           </ul>
         </nav>
         <div className={styles.cart}>
-          <Link to="/cart">🛒</Link>
+          <Link to="/cart">🛒 ({cartCount})</Link>
         </div>
       </div>
     </header>

@@ -28,3 +28,23 @@
 .price {
   font-weight: 600;
 }
+
+.cardActions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.cartBtn {
+  flex: 3 1 0;
+}
+
+.favoriteBtn {
+  flex: 1 1 0;
+}
+
+.isActive {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: 1px solid var(--color-accent);
+}
