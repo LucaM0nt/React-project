@@ -27,3 +27,13 @@
   text-decoration: underline;
   color: var(--color-accent);
 }
+
+.navLinks a.active {
+  text-decoration: underline;
+  color: var(--color-accent);
+}
+
+.cartAndFav {
+  display: flex;
+  gap: 1rem;
+}

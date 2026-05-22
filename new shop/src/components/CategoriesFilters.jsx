@@ -1,4 +1,5 @@
 import styles from "./CategoriesFilters.module.css";
+import Button from "./Button";
 
 export default function CategoriesFilters({
   categories,
@@ -8,13 +9,13 @@ export default function CategoriesFilters({
   return (
     <div className={styles.filters}>
       {categories.map((category) => (
-        <button
+        <Button
           key={category}
-          className={selectedCategory === category ? styles.active : ""}
+          variant={selectedCategory === category ? "accent" : "outline"}
           onClick={() => onSelectCategory(category)}
         >
           {category}
-        </button>
+        </Button>
       ))}
     </div>
   );

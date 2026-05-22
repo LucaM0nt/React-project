@@ -1,7 +1,10 @@
+import Button from "./Button";
 import styles from "./ProductCard.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ProductCard({
+  id,
   name,
   price,
   category,
@@ -16,24 +19,36 @@ export default function ProductCard({
 
   return (
     <div className={`${styles.card} column`}>
-      <img className={styles.image} src={image} alt={name} />
+      <Link to={`/products/${id}`}>
+        <img className={styles.image} src={image} alt={name} />
+      </Link>
       <p className={styles.category}>{category}</p>
-      <h3 className={styles.name}>{name}</h3>
+      <Link to={`/products/${id}`}>
+        <h3 className={styles.name}>{name}</h3>
+      </Link>
       <p className={styles.price}>${price.toFixed(2)}</p>
       <div className={`${styles.cardActions} row`}>
-        <button
+        {/* <button
           className={`${styles.cartBtn} btn btn-accent`}
           onClick={onAddToCart}
         >
           🛒 Add to Cart
-        </button>
+        </button> */}
+        <Button
+          onClick={onAddToCart}
+          className={styles.cartBtn}
+          variant="accent"
+        >
+          🛒 Add to Cart
+        </Button>
 
-        <button
-          className={`btn ${styles.favoriteBtn} ${isFavorite ? "btn-accent" : "btn-outline"}`}
+        <Button
+          className={styles.favoriteBtn}
           onClick={toggleFavorite}
+          variant={isFavorite ? "accent" : "outline"}
         >
           {isFavorite ? "❤️" : "🤍"}
-        </button>
+        </Button>
       </div>
     </div>
   );

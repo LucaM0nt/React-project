@@ -4,82 +4,33 @@ import dummyProducts from "./data/dummyData";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ProductCard from "./components/ProductCard";
-import SearchBar from "./components/Searchbar";
-import CategoriesFilters from "./components/CategoriesFilters";
+
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ProductDetail from "./pages/ProductDetail";
+import Favorites from "./pages/Favorites";
+import Cart from "./pages/Cart";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const cartCount = cartItems.length;
 
-  const [query, setQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState(dummyProducts);
-
-  const [categories, setCategories] = useState([
-    "All",
-    ...new Set(dummyProducts.map((product) => product.category)),
-  ]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  function onAddToCart(product) {
-    setCartItems([...cartItems, product]);
-  }
-
-  function onSearchChange(e) {
-    setQuery(e.target.value);
-    setFilteredProducts(
-      dummyProducts.filter((product) =>
-        product.name.toLowerCase().includes(e.target.value.toLowerCase()),
-      ),
-    );
-  }
-
-  function onCategorySelect(category) {
-    setSelectedCategory(category);
-    if (category === "All") {
-      setFilteredProducts(dummyProducts);
-      return;
-    }
-    setFilteredProducts(
-      dummyProducts.filter((product) => product.category === category),
-    );
-  }
-
   return (
     <>
       <Header cartCount={cartCount} />
-      <div className="hero container section">
-        <h1 className="h1">Welcome to our shop!</h1>
-        <div className="description">
-          <p>
-            Explore our wide range of products, from trendy clothing to stylish
-            accessories. Find the perfect items to express your unique style and
-            elevate your wardrobe. Shop now and discover the latest fashion
-            trends at unbeatable prices!
-          </p>
-        </div>
-        <SearchBar value={query} onChange={onSearchChange} />
-        <CategoriesFilters
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={onCategorySelect}
+      <Routes>
+        <Route
+          path="/"
+          element={<Home cartItems={cartItems} setCartItems={setCartItems} />}
         />
-      </div>
-
-      <main className="container section">
-        <div className="grid-products">
-          {filteredProducts.map((product, index) => (
-            <ProductCard
-              key={index}
-              name={product.name}
-              price={product.price}
-              category={product.category}
-              image={product.image}
-              onAddToCart={() => onAddToCart(product)}
-            />
-          ))}
-        </div>
-      </main>
+        <Route path="/about" element={<About />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
       <Footer />
     </>
   );

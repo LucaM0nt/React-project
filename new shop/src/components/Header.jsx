@@ -1,30 +1,28 @@
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 
 export default function Header({ cartCount }) {
   return (
     <header className={`${styles.navbar}`}>
       <div className={"container row"}>
-        <Link className={styles.brand} to="/">
+        <NavLink className={styles.brand} to="/">
           <Logo />
-        </Link>
+        </NavLink>
 
         <nav aria-label="Main navigation">
           <ul className={`${styles.navLinks} row`}>
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/products">Products</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
+              <NavLink to="/about">About</NavLink>
             </li>
           </ul>
         </nav>
-        <div className={styles.cart}>
-          <Link to="/cart">🛒 ({cartCount})</Link>
+        <div className={styles.cartAndFav}>
+          <NavLink to="/favorites">❤️</NavLink>
+          <NavLink to="/cart">🛒 ({cartCount})</NavLink>
         </div>
       </div>
     </header>

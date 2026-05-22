@@ -1,0 +1,59 @@
+.backButton {
+  margin-bottom: 1.5rem;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.image {
+  width: 100%;
+  max-width: 520px;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+  background: var(--color-card);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.category {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.name {
+  margin: 0;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.description {
+  line-height: 1.6;
+}
+
+.notFound {
+  margin-top: 1rem;
+}
+
+@media (max-width: 800px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+
+  .image {
+    max-width: 100%;
+  }
+}
