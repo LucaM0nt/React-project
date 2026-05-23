@@ -12,9 +12,24 @@
   transform: translateY(-2px);
 }
 
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cardBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
 .image {
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: contain;
+  display: block;
   border-radius: var(--radius);
   background: var(--color-bg);
 }

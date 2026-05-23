@@ -1,8 +1,12 @@
-import Logo from "./Logo";
+import { useCart } from "../context/CartContext";
 import { NavLink } from "react-router-dom";
-import styles from "./Header.module.css";
 
-export default function Header({ cartCount }) {
+import styles from "./Header.module.css";
+import Logo from "./Logo";
+
+export default function Header() {
+  const { cartCount } = useCart();
+
   return (
     <header className={`${styles.navbar}`}>
       <div className={"container row"}>

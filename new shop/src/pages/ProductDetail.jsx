@@ -1,12 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
-import dummyProducts from "../data/dummyData";
+import { useProducts } from "../context/ProductsContext";
 import styles from "./ProductDetail.module.css";
 
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const productId = Number(id);
-  const product = dummyProducts.find((item) => item.id === productId);
+  const { products } = useProducts();
+  const product = products.find((item) => item.id === productId);
 
   return (
     <main className="container section">
@@ -22,11 +23,11 @@ export default function ProductDetail() {
           <img
             className={styles.image}
             src={product.image}
-            alt={product.name}
+            alt={product.title}
           />
           <div className={styles.info}>
             <p className={styles.category}>{product.category}</p>
-            <h1 className={styles.name}>{product.name}</h1>
+            <h1 className={styles.name}>{product.title}</h1>
             <p className={styles.price}>${product.price.toFixed(2)}</p>
             <p className={styles.description}>
               {product.description ?? "Descrizione non disponibile."}

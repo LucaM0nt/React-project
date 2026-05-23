@@ -14,17 +14,11 @@ import Cart from "./pages/Cart";
 import ErrorPage from "./pages/ErrorPage";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-  const cartCount = cartItems.length;
-
   return (
     <>
-      <Header cartCount={cartCount} />
+      <Header />
       <Routes>
-        <Route
-          path="/"
-          element={<Home cartItems={cartItems} setCartItems={setCartItems} />}
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/favorites" element={<Favorites />} />
